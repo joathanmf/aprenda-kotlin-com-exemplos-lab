@@ -4,9 +4,9 @@ enum class Nivel { FACIL, INTERMEDIARIO, DIFICIL }
 
 class Usuario(val nome: String)
 
-data class ConteudoEducacional(val nome: String, val duracao: Int)
+data class ConteudoEducacional(val nome: String, val duracao: Int, val nivel: Nivel = Nivel.FACIL)
 
-data class Formacao(val nome: String, val conteudos: List<ConteudoEducacional>, val nivel: Nivel = Nivel.INTERMEDIARIO) {
+data class Formacao(val nome: String, val conteudos: List<ConteudoEducacional>, val nivel: Nivel = Nivel.FACIL) {
 
     val inscritos = mutableListOf<Usuario>()
     
@@ -41,7 +41,7 @@ data class Formacao(val nome: String, val conteudos: List<ConteudoEducacional>, 
         println("Nível: $nivel")
         println("CONTEÚDOS:")
         for (conteudo in conteudos) {
-            println("- ${conteudo.nome} - ${conteudo.duracao} minutos")
+            println("- ${conteudo.nome} - ${conteudo.duracao} minutos (${conteudo.nivel}))")
         }
         println("")
     }
@@ -55,11 +55,11 @@ fun main() {
     val usuario4 = Usuario("João")
     val usuario5 = Usuario("José")
 
-    val conteudo1 = ConteudoEducacional("Conhecendo a documentação", 10)
-    val conteudo2 = ConteudoEducacional("Faça seu primeiro 'Olá, Mundo'", 15)
-    val conteudo3 = ConteudoEducacional("Todos os tipos da linguagem", 22)
-    val conteudo4 = ConteudoEducacional("Conhecendo o IntelliJ IDEA", 30)
-    val conteudo5 = ConteudoEducacional("Conhecendo o Kotlin Playground", 40)
+    val conteudo1 = ConteudoEducacional("Conhecendo a documentação", 10, Nivel.FACIL)
+    val conteudo2 = ConteudoEducacional("Faça seu primeiro 'Olá, Mundo'", 15, Nivel.FACIL)
+    val conteudo3 = ConteudoEducacional("Todos os tipos da linguagem", 22, Nivel.INTERMEDIARIO)
+    val conteudo4 = ConteudoEducacional("Conhecendo o IntelliJ IDEA", 30, Nivel.INTERMEDIARIO)
+    val conteudo5 = ConteudoEducacional("Conhecendo o Kotlin Playground", 40, Nivel.FACIL)
 
     val conteudos = listOf(conteudo1, conteudo2, conteudo3, conteudo4, conteudo5)
 
